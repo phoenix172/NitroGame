@@ -7,7 +7,7 @@ import nitroGame.Core.Interfaces.Visual;
 
 public class SelectionVisual extends VisualCollection implements Visual {
 
-	private Optional<Visual> visual;
+	private Optional<Visual> visual = Optional.empty();
 	private String key;
 
 	public SelectionVisual(String key) {
@@ -27,7 +27,7 @@ public class SelectionVisual extends VisualCollection implements Visual {
 	@Override
 	public void render(Graphics graphics) {
 		if (visual.isPresent())
-			visual.get().render(graphics);
+			visual.get().render(graphics.create());
 	}
 
 	@Override

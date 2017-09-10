@@ -23,8 +23,12 @@ public abstract class Game extends Canvas implements Runnable {
 	Random rand = new Random();
 	
 	public Game() {
-		LevelManager levelManager = new LevelManager();
 		visuals = new CompositeVisual(GameVisuals);
+		visuals.add(new LevelManager());
+	}
+	
+	public LevelManager levels() {
+		return (LevelManager)visuals.get(LevelManager.LEVEL_MANAGER_KEY);
 	}
 	
 	public void addVisual(Visual visual) {
@@ -88,9 +92,8 @@ public abstract class Game extends Canvas implements Runnable {
 //		g2.setColor(Color.BLACK);
 //		g2.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
-		visuals.stream().forEach(x->x.render(g2.create()));
+		visuals.render(g);
 		g2.drawString("Gosho", 10, 10);
-		
 		
 		g.dispose();
 		bs.show();

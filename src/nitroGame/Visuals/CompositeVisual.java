@@ -18,7 +18,7 @@ public class CompositeVisual extends VisualCollection implements Visual {
 
 	@Override
 	public void render(Graphics graphics) {
-		this.forEach((k, v) -> v.render(graphics));
+		this.forEach((k, v) -> v.render(graphics.create()));
 	}
 
 	@Override

@@ -5,13 +5,16 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import nitroGame.Core.Interfaces.Visual;
-import nitroGame.Visuals.Level;
 import nitroGame.Visuals.SelectionVisual;
 
 public class LevelManager implements Visual {
-	private static final String LEVEL_MANAGER_KEY = "LEVEL_MANAGER";
+	public static final String LEVEL_MANAGER_KEY = "LEVEL_MANAGER";
 
 	public SelectionVisual levels;
+	
+	public LevelManager() {
+		levels = new SelectionVisual(LEVEL_MANAGER_KEY);
+	}
 
 	public void addLevel(Level level) {
 		levels.add(level);
