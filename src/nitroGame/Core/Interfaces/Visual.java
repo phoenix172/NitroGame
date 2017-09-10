@@ -7,5 +7,5 @@ public interface Visual {
 
 	void tick();
 
-	void render(GraphicsWrapper graphics);
+	void render(GraphicsWrapper graphicsWrapper);
 }

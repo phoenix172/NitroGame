@@ -4,6 +4,7 @@ import nitroGame.Core.Game;
 import nitroGame.Core.Level;
 import nitroGame.Core.GameWindow;
 import nitroGame.Visuals.Square;
+import nitroGame.graphics.StaticBackground;
 import nitroGame.resources.ImageResource;
 
 public class SampleGame extends Game{
@@ -19,7 +20,8 @@ public class SampleGame extends Game{
 	
 	private void addLevels() {
 		Level pesho = new Level("pesho");
-		pesho.setBackground(resources().get("BACKGROUND"));
+		StaticBackground background = new StaticBackground(resources().get("BACKGROUND"));
+
 		levels().add(pesho);
 		levels().setCurrentLevel(pesho);	
 	}

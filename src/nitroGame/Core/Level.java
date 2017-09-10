@@ -12,7 +12,6 @@ import nitroGame.resources.ImageResource;
 public class Level implements Visual {
 
 	private CompositeVisual compVisual;
-	private ImageResource background;
 
 	private String key;
 
@@ -28,19 +27,11 @@ public class Level implements Visual {
 
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
-		Graphics2D graphics = graphicsWrapper.create();
-		Rectangle screenBounds = graphicsWrapper.bounds();
-		graphics.drawImage(background.get(), 0, 0, 
-				(int) screenBounds.getWidth(), (int) screenBounds.getHeight(), null);
 		compVisual.render(graphicsWrapper);
 	}
 
 	@Override
 	public String key() {
 		return this.key;
-	}
-
-	public void setBackground(ImageResource resource) {
-		this.background = resource;
 	}
 }
