@@ -19,7 +19,7 @@ public class SampleGame extends Game{
 	}
 	
 	private void addLevels() {
-		Level pesho = new Level("pesho");
+		Level pesho = new CustomLevel("pesho");
 		StaticBackground background = new StaticBackground(resources().get("BACKGROUND"));
 
 		levels().add(pesho);
