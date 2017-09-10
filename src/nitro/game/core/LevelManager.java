@@ -3,9 +3,9 @@ package nitro.game.core;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import nitro.game.core.Interfaces.Visual;
 import nitro.game.graphics.GraphicsWrapper;
 import nitro.game.visuals.SelectionVisual;
+import nitro.game.visuals.Visual;
 
 public class LevelManager implements Visual {
 	public static final String LEVEL_MANAGER_KEY = "LEVEL_MANAGER";

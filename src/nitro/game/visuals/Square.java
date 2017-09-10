@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import nitro.game.core.Interfaces.Visual;
 import nitro.game.graphics.GraphicsWrapper;
 
 public class Square implements Visual {

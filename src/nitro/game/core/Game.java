@@ -6,10 +6,10 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-import nitro.game.core.Interfaces.Visual;
 import nitro.game.graphics.GraphicsWrapper;
 import nitro.game.resources.ResourceManager;
 import nitro.game.visuals.CompositeVisual;
+import nitro.game.visuals.Visual;
 
 public abstract class Game extends Canvas implements Runnable {
 

@@ -1,8 +1,8 @@
 package nitro.game.visuals;
 
+import java.util.Arrays;
 import java.util.Optional;
 
-import nitro.game.core.Interfaces.Visual;
 import nitro.game.graphics.GraphicsWrapper;
 
 public class SelectionVisual extends VisualCollection implements Visual {
@@ -33,5 +33,9 @@ public class SelectionVisual extends VisualCollection implements Visual {
 	@Override
 	public String key() {
 		return this.key;
+	}
+
+	public void addRange(Visual...visuals) {
+		Arrays.asList(visuals).forEach(x -> this.add(x));
 	}
 }
