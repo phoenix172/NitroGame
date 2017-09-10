@@ -1,6 +1,5 @@
 package nitroGame.Core;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -9,7 +8,7 @@ import nitroGame.Visuals.CompositeVisual;
 import nitroGame.graphics.GraphicsWrapper;
 import nitroGame.resources.ImageResource;
 
-public class Level implements Visual {
+public abstract class Level implements Visual {
 
 	private CompositeVisual compVisual;
 	private ImageResource background;
