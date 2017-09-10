@@ -16,6 +16,7 @@ public abstract class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1501150258850337479L;
 
 	private static final String GameVisuals = "GAME_VISUALS";
+	protected String title;
 	private CompositeVisual visuals;
 	
 	private ResourceManager resources;
@@ -28,7 +29,6 @@ public abstract class Game extends Canvas implements Runnable {
 	public Game() {
 		visuals = new CompositeVisual(GameVisuals);
 		visuals.add(new LevelManager());
-		
 		resources = new ResourceManager();
 	}
 
@@ -108,5 +108,9 @@ public abstract class Game extends Canvas implements Runnable {
 
 		g.dispose();
 		bs.show();
+	}
+	
+	public String getTitle() {
+		return this.title;
 	}
 }

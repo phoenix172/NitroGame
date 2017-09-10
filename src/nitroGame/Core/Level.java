@@ -28,12 +28,10 @@ public class Level implements Visual {
 
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
-		Graphics2D g2 = graphicsWrapper.create();
-
-		Rectangle sreenRectangle = g2.getDeviceConfiguration().getBounds();
-
-		g2.drawImage(background.get(), 0, 0, (int) sreenRectangle.getWidth(), (int) sreenRectangle.getHeight(), null);
-
+		Graphics2D graphics = graphicsWrapper.create();
+		Rectangle screenBounds = graphicsWrapper.bounds();
+		graphics.drawImage(background.get(), 0, 0, 
+				(int) screenBounds.getWidth(), (int) screenBounds.getHeight(), null);
 		compVisual.render(graphicsWrapper);
 	}
 
