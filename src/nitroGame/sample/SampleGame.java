@@ -23,6 +23,7 @@ public class SampleGame extends Game{
 		StaticBackground background = new StaticBackground(resources().get("BACKGROUND"));
 
 		levels().add(pesho);
-		levels().setCurrentLevel(pesho);	
+		levels().setCurrentLevel(pesho);
+		pesho.add(background);
 	}
 }
