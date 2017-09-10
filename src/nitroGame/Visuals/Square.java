@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import nitroGame.Core.Interfaces.Visual;
+import nitroGame.graphics.GraphicsWrapper;
 
 public class Square implements Visual {
 
@@ -18,9 +19,9 @@ public class Square implements Visual {
 	}
 
 	@Override
-	public void render(Graphics graphics) {
-		graphics.setColor(Color.GREEN);
-		graphics.drawRect(0, 0, 10, 10);
+	public void render(GraphicsWrapper graphics) {
+		graphics.create().setColor(Color.GREEN);
+		graphics.create().drawRect(0, 0, 10, 10);
 
 	}
 	@Override

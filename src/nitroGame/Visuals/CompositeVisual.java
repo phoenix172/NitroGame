@@ -1,8 +1,7 @@
 package nitroGame.Visuals;
 
-import java.awt.Graphics;
-
 import nitroGame.Core.Interfaces.Visual;
+import nitroGame.graphics.GraphicsWrapper;
 
 public class CompositeVisual extends VisualCollection implements Visual {
 
@@ -17,8 +16,8 @@ public class CompositeVisual extends VisualCollection implements Visual {
 	}
 
 	@Override
-	public void render(Graphics graphics) {
-		this.forEach((k, v) -> v.render(graphics.create()));
+	public void render(GraphicsWrapper graphics) {
+		this.forEach((k, v) -> v.render(graphics));
 	}
 
 	@Override

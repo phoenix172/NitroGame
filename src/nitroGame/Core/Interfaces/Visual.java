@@ -1,10 +1,11 @@
 package nitroGame.Core.Interfaces;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import nitroGame.graphics.GraphicsWrapper;
 
 public interface Visual {
 	String key();
+
 	void tick();
-	void render(Graphics graphics);
+
+	void render(GraphicsWrapper graphics);
 }

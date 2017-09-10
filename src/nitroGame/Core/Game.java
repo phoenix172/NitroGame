@@ -4,37 +4,46 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
 import java.util.Random;
 
 import nitroGame.Core.Interfaces.Visual;
 import nitroGame.Visuals.CompositeVisual;
+import nitroGame.graphics.GraphicsWrapper;
+import nitroGame.resources.ResourceManager;
 
 public abstract class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1501150258850337479L;
 
 	private static final String GameVisuals = "GAME_VISUALS";
-	private CompositeVisual visuals; 
+	private CompositeVisual visuals;
 	
+	private ResourceManager resources;
+
 	private boolean running = false;
 	private Thread thread;
 
 	Random rand = new Random();
-	
+
 	public Game() {
 		visuals = new CompositeVisual(GameVisuals);
 		visuals.add(new LevelManager());
+		
+		resources = new ResourceManager();
 	}
-	
+
 	public LevelManager levels() {
-		return (LevelManager)visuals.get(LevelManager.LEVEL_MANAGER_KEY);
+		return (LevelManager) visuals.get(LevelManager.LEVEL_MANAGER_KEY);
 	}
 	
+	public ResourceManager resources() {
+		return this.resources;
+	}
+
 	public void addVisual(Visual visual) {
 		visuals.add(visual);
 	}
-	
+
 	public synchronized void start() {
 		if (running)
 			return;
@@ -88,13 +97,15 @@ public abstract class Game extends Canvas implements Runnable {
 
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2 = (Graphics2D) g;
-		
-//		g2.setColor(Color.BLACK);
-//		g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-		
-		visuals.render(g);
+
+		GraphicsWrapper graphicsWrapper = new GraphicsWrapper(g2);
+
+		// g2.setColor(Color.BLACK);
+		// g2.fillRect(0, 0, this.getWidth(), this.getHeight());
+
+		visuals.render(graphicsWrapper);
 		g2.drawString("Gosho", 10, 10);
-		
+
 		g.dispose();
 		bs.show();
 	}

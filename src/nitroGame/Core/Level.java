@@ -1,39 +1,48 @@
 package nitroGame.Core;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import nitroGame.Core.Interfaces.Visual;
 import nitroGame.Visuals.CompositeVisual;
+import nitroGame.graphics.GraphicsWrapper;
+import nitroGame.resources.ImageResource;
 
 public class Level implements Visual {
 
 	private CompositeVisual compVisual;
+	private ImageResource background;
 
 	private String key;
+
 	public Level(String key) {
 		compVisual = new CompositeVisual(key);
-		this.key=key;
+		this.key = key;
 	}
-	
+
 	@Override
 	public void tick() {
 		compVisual.tick();
 	}
 
 	@Override
-	public void render(Graphics graphics) {
-		Graphics2D g2 = ((Graphics2D)graphics);
-		Rectangle screenRectangle = g2.getDeviceConfiguration().getBounds();
-		g2.setColor(Color.PINK);
-		g2.fill(screenRectangle);
-		compVisual.render(graphics);
+	public void render(GraphicsWrapper graphicsWrapper) {
+		Graphics2D g2 = graphicsWrapper.create();
+
+		Rectangle sreenRectangle = g2.getDeviceConfiguration().getBounds();
+
+		g2.drawImage(background.get(), 0, 0, (int) sreenRectangle.getWidth(), (int) sreenRectangle.getHeight(), null);
+
+		compVisual.render(graphicsWrapper);
 	}
 
 	@Override
 	public String key() {
 		return this.key;
+	}
+
+	public void setBackground(ImageResource resource) {
+		this.background = resource;
 	}
 }
