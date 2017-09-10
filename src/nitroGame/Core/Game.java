@@ -1,21 +1,21 @@
 package nitroGame.Core;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import nitroGame.Core.Interfaces.Visual;
+import nitroGame.Visuals.CompositeVisual;
 
 public abstract class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1501150258850337479L;
 
-	private List<Visual> visuals; 
+	private static final String GameVisuals = "GAME_VISUALS";
+	private CompositeVisual visuals; 
 	
 	private boolean running = false;
 	private Thread thread;
@@ -23,7 +23,8 @@ public abstract class Game extends Canvas implements Runnable {
 	Random rand = new Random();
 	
 	public Game() {
-		visuals = new ArrayList<Visual>();
+		LevelManager levelManager = new LevelManager();
+		visuals = new CompositeVisual(GameVisuals);
 	}
 	
 	public void addVisual(Visual visual) {

@@ -18,4 +18,9 @@ public class Level implements Visual {
 	public void render(Graphics graphics) {
 		compVisual.render(graphics);
 	}
+
+	@Override
+	public String key() {
+		return this.key();
+	}
 }
