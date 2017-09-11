@@ -5,7 +5,7 @@ import java.util.Optional;
 public abstract class Resource<T> {
 
 	private String key;
-	private Optional<T> value;
+	protected Optional<T> value;
 
 	public Resource(String key) {
 		this.key = key;
@@ -16,12 +16,12 @@ public abstract class Resource<T> {
 		return this.key;
 	}
 
-	protected abstract T load();
+	protected abstract void load();
 
 	public T get() {
-		if (!value.isPresent())
-			value = Optional.ofNullable(load());
+		if (value.isPresent())
+			return value.get();
 
-		return value.get();
+		return null;
 	}
 }

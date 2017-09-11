@@ -1,7 +1,6 @@
 package nitro.game.sample;
 
 import java.awt.Dimension;
-import java.awt.Rectangle;
 
 import nitro.game.objects.GameObject;
 import nitro.game.resources.ResourceDictionary;
@@ -18,8 +17,9 @@ public class Cube extends GameObject {
 	}
 
 	private void initStates() {
-		animation = new Animation(10, "DEFAULT", new Frame("frame1", resources().get("BACKGROUND")),
-				new Frame("frame2", resources().get("CUBE")));
+		animation = new Animation(5, "DEFAULT", new Frame("frame1", resources().get("frame1")),
+				new Frame("frame3", resources().get("frame3")), new Frame("frame4", resources().get("frame4")),
+				new Frame("frame5", resources().get("frame5")), new Frame("frame6", resources().get("frame6")));
 		this.stateMapper().addMapping("default", animation);
 	}
 }
