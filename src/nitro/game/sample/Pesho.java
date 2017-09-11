@@ -1,5 +1,7 @@
 package nitro.game.sample;
 
+import java.awt.Point;
+
 import nitro.game.objects.GameObject;
 import nitro.game.visuals.Animation;
 import nitro.game.visuals.Frame;
@@ -9,6 +11,16 @@ public class Pesho extends GameObject {
 
 	public Pesho() {
 		super();
+	}
+	
+	@Override
+	public void tick() {
+		super.tick();
+		Point currentLocation = this.getLocation();
+		if(currentLocation == null)
+			currentLocation = new Point(0,0);
+		currentLocation.x += 2;
+		this.setLocation(currentLocation);
 	}
 
 	@Override

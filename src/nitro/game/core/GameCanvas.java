@@ -55,10 +55,7 @@ public class GameCanvas extends Canvas {
 				updates++;
 				delta--;
 			}
-			initGraphics();
-			game.render(graphicsWrapper);
-			bs.show();
-			graphicsWrapper.dispose();
+			render();
 			frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
@@ -68,6 +65,14 @@ public class GameCanvas extends Canvas {
 				updates = 0;
 			}
 		}
+	}
+
+	private void render() {
+		initGraphics();
+		game.render(graphicsWrapper);
+		bs.show();
+		graphicsWrapper.dispose();
+		this.invalidate();
 	}
 
 	private void initGraphics() {

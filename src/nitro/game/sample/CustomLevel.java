@@ -18,7 +18,7 @@ public class CustomLevel extends Level {
 		addChild(background);
 		Pesho pesho = new Pesho();
 		pesho.setLocation(new Point(0, 0));
-		pesho.setSize(new Dimension(128, 128));
+//		pesho.setSize(new Dimension(128, 128));
 		addChild(pesho);
 	}
 }
