@@ -4,10 +4,13 @@ import java.awt.Graphics2D;
 
 import nitro.game.core.Game;
 import nitro.game.core.Level;
+import nitro.game.graphics.Animation;
 import nitro.game.graphics.GraphicsWrapper;
 import nitro.game.graphics.StaticBackground;
 import nitro.game.objects.GameObject;
 import nitro.game.resources.ImageResource;
+import nitro.game.resources.ResourceDictionary;
+import nitro.game.visuals.Frame;
 
 public class SampleGame extends Game {
 	public SampleGame() {
@@ -27,34 +30,27 @@ public class SampleGame extends Game {
 
 		levels().add(level);
 		levels().setCurrentLevel(level);
-		level.add(background);
+		//level.add(background);	
 		
-		GameObject cube = new Cube(resources().get("CUBE"));
+		GameObject cube = new Cube(resources());
 		level.add(cube);
 
 	}
 
 	public class Cube extends GameObject {
-
-		public Cube(ImageResource imageResouce) {
-			super(imageResouce);
-			// TODO Auto-generated constructor stub
+		static final String resourceKey = "CUBE";
+		Animation animation;  
+		
+		public Cube(ResourceDictionary resources) {
+			super(resourceKey, resources);
+			initStates();
 		}
 
-		@Override
-		public String key() {
-			return "cube";
+		private void initStates() {
+			animation = new Animation("DEFAULT",
+					new Frame(resources.get("BACKGROUND")),
+					new Frame(resources.get("CUBE")));
+			this.stateMapper().addMapping("default", animation);
 		}
-
-		@Override
-		public void tick() {			
-		}
-
-		@Override
-		public void render(GraphicsWrapper graphicsWrapper) {
-			Graphics2D g2 = graphicsWrapper.create();
-			g2.drawImage(sprite.image.get(), 0, 0, (int)64, (int)64, null);
-		}
-
 	}
 }

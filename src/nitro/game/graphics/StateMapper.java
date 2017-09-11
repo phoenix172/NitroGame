@@ -10,7 +10,6 @@ public class StateMapper implements Visual{
 	public Map<String, Visual> mappings;
 	private String key;
 	private StateMachine stateMachine;
-	private Visual currentVisual;
 	
 	public StateMapper(String key, StateMachine stateMachine) {
 		this.key = key;
@@ -20,7 +19,7 @@ public class StateMapper implements Visual{
 	}
 	
 	private void stateChanged(String state) {
-		this.currentVisual = mappings.get(state);
+//		/this.currentVisual = mappings.get(state);
 	}
 	
 	public void addMapping(String state, Visual visual) {
@@ -29,6 +28,10 @@ public class StateMapper implements Visual{
 	
 	public void removeMapping(String state) {
 		mappings.remove(state);
+	}
+	
+	public Visual currentVisual() {
+		return getVisual(stateMachine.currentState());
 	}
 	
 	public Visual getVisual(String state) {
@@ -46,11 +49,11 @@ public class StateMapper implements Visual{
 
 	@Override
 	public void tick() {
-		currentVisual.tick();
+		currentVisual().tick();
 	}
 
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
-		currentVisual.render(graphicsWrapper);
+		currentVisual().render(graphicsWrapper);
 	}
 }

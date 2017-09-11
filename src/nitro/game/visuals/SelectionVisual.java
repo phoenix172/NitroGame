@@ -18,16 +18,23 @@ public class SelectionVisual extends VisualCollection implements Visual {
 		visual = Optional.of(this.get(key));
 	}
 
+	private Optional<Visual> currentVisual() {
+		if (!visual.isPresent())
+			visual = this.values()
+				.stream().findFirst();
+		return visual;
+	}
+	
 	@Override
 	public void tick() {
-		if (visual.isPresent())
-			visual.get().tick();
+		if(currentVisual().isPresent())
+			currentVisual().get().tick();
 	}
 
 	@Override
 	public void render(GraphicsWrapper graphics) {
-		if (visual.isPresent())
-			visual.get().render(graphics);
+		if (currentVisual().isPresent())
+			currentVisual().get().render(graphics);
 	}
 
 	@Override

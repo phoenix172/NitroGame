@@ -1,8 +1,11 @@
 package nitro.game.objects;
 
+import nitro.game.graphics.GraphicsWrapper;
 import nitro.game.graphics.StateMapper;
 import nitro.game.graphics.StaticBackground;
 import nitro.game.resources.ImageResource;
+import nitro.game.resources.Resource;
+import nitro.game.resources.ResourceDictionary;
 import nitro.game.visuals.Visual;
 
 public abstract class GameObject implements Visual {
@@ -12,15 +15,16 @@ public abstract class GameObject implements Visual {
 
 	private StateMachine stateMachine;
 	private StateMapper stateMapper;
-
-	protected StaticBackground sprite;
+	protected ResourceDictionary resources;
 
 	private static final String SPRITE = "SPRITE";
+	private String key;
 
-	public GameObject(ImageResource imageResouce) {
+	public GameObject(String key, ResourceDictionary resources) {
+		this.key = key;
 		this.stateMachine = new StateMachine();
 		this.stateMapper = new StateMapper(SPRITE, stateMachine);
-		this.sprite = new StaticBackground(imageResouce);
+		this.resources = resources;
 	}
 
 	protected StateMachine stateMachine() {
@@ -30,4 +34,20 @@ public abstract class GameObject implements Visual {
 	protected StateMapper stateMapper() {
 		return stateMapper;
 	}
+
+	@Override
+	public void tick() {
+		stateMapper.tick();
+	}
+	
+	@Override
+	public void render(GraphicsWrapper graphicsWrapper) {
+		stateMapper.render(graphicsWrapper);
+	}
+	
+	@Override
+	public String key() {
+		return this.key;
+	}
+
 }

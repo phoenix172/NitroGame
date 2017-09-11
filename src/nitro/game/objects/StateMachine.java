@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class StateMachine {
-	String currentState = null;
+	String currentState = "default";
 	Optional<Consumer<String>> stateChangedCallback;
 
 	public StateMachine() {

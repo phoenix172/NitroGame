@@ -7,7 +7,8 @@ import java.awt.image.BufferStrategy;
 import java.util.Random;
 
 import nitro.game.graphics.GraphicsWrapper;
-import nitro.game.resources.ResourceManager;
+import nitro.game.objects.GameObject;
+import nitro.game.resources.ResourceDictionary;
 import nitro.game.visuals.CompositeVisual;
 import nitro.game.visuals.Visual;
 
@@ -19,7 +20,7 @@ public abstract class Game extends Canvas implements Runnable {
 	protected String title;
 	private CompositeVisual visuals;
 	
-	private ResourceManager resources;
+	private ResourceDictionary resources;
 
 	private boolean running = false;
 	private Thread thread;
@@ -29,14 +30,14 @@ public abstract class Game extends Canvas implements Runnable {
 	public Game() {
 		visuals = new CompositeVisual(GameVisuals);
 		visuals.add(new LevelManager());
-		resources = new ResourceManager();
+		resources = new ResourceDictionary();
 	}
 
 	public LevelManager levels() {
 		return (LevelManager) visuals.get(LevelManager.LEVEL_MANAGER_KEY);
 	}
 	
-	public ResourceManager resources() {
+	public ResourceDictionary resources() {
 		return this.resources;
 	}
 
