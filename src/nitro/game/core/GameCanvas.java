@@ -1,16 +1,11 @@
 package nitro.game.core;
 
 import java.awt.Canvas;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
 import nitro.game.graphics.GraphicsWrapper;
-import nitro.game.objects.GameObject;
-import nitro.game.resources.ResourceDictionary;
-import nitro.game.visuals.CompositeVisual;
-import nitro.game.visuals.Visual;
 
 public class GameCanvas extends Canvas {
 
