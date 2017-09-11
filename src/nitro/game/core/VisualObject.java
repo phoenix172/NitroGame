@@ -20,8 +20,6 @@ public class VisualObject implements Visual {
 	private String key;
 
 	public VisualObject() {
-		this.location = new Point();
-		this.size = new Dimension();
 		this.key = UUID.randomUUID().toString();
 		this.compositeVisual = new CompositeVisual(key);
 		this.resourceDictionary = new ResourceDictionary();
@@ -60,6 +58,14 @@ public class VisualObject implements Visual {
 	public void setSize(Dimension size) {
 		this.size = size;
 	}
+	
+	public Point getLocation() {
+		return this.location;
+	}
+	
+	public Dimension getSize() {
+		return this.size;
+	}
 
 	public void setKey(String key) {
 		this.key = key;
@@ -80,7 +86,11 @@ public class VisualObject implements Visual {
 
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
-		graphicsWrapper.setBounds(location, size);
-		compositeVisual.render(graphicsWrapper);
+		GraphicsWrapper wrapper = graphicsWrapper.create();
+		if(location != null)
+			wrapper.bounds().setLocation(location);
+		if(size != null)
+			wrapper.bounds().setSize(size);
+		compositeVisual.render(wrapper);
 	}
 }

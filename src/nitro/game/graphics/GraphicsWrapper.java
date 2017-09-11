@@ -13,14 +13,12 @@ public class GraphicsWrapper {
 	public GraphicsWrapper(Graphics2D graphics, Rectangle bounds) {
 
 		this.bounds = bounds;
-
 		if (graphics == null)
 			throw new IllegalArgumentException("graphics");
 		this.graphics = graphics;
 	}
 
 	public GraphicsWrapper(Graphics2D graphics) {
-
 		this(graphics, graphics.getDeviceConfiguration().getBounds());
 	}
 
@@ -29,7 +27,8 @@ public class GraphicsWrapper {
 	}
 
 	public GraphicsWrapper create(Point location, Dimension size) {
-		return new GraphicsWrapper((Graphics2D) this.graphics.create(location.x, location.y, size.width, size.height));
+		return new GraphicsWrapper((Graphics2D) 
+				this.graphics.create(location.x, location.y, size.width, size.height));
 	}
 
 	public void setBounds(Point location, Dimension size) {
