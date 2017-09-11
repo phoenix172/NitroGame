@@ -5,15 +5,17 @@ import nitro.game.resources.ImageResource;
 
 public class Frame implements Visual {
 
+	private String key;
 	private ImageResource resource;
-	
-	public Frame(ImageResource resource) {
+
+	public Frame(String key, ImageResource resource) {
+		this.key = key;
 		this.resource = resource;
 	}
 
 	@Override
 	public String key() {
-		return null;
+		return this.key;
 	}
 
 	@Override
@@ -24,6 +26,6 @@ public class Frame implements Visual {
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
 
+		graphicsWrapper.create().drawImage(resource.get(), 0, 0, 32, 32, null);
 	}
-
 }

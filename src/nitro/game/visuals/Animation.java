@@ -1,10 +1,7 @@
-package nitro.game.graphics;
+package nitro.game.visuals;
 
 import java.util.Iterator;
 import java.util.stream.Stream;
-
-import nitro.game.visuals.Frame;
-import nitro.game.visuals.SelectionVisual;
 
 public class Animation extends SelectionVisual {
 
@@ -13,8 +10,9 @@ public class Animation extends SelectionVisual {
 
 	private int elapsedTicks = 0;
 
-	public Animation(String key, Frame... frames) {
+	public Animation(int speed, String key, Frame... frames) {
 		super(key);
+		this.speed = speed;
 		this.addRange(frames);
 		frameIterator = frames().iterator();
 	}
@@ -35,7 +33,9 @@ public class Animation extends SelectionVisual {
 		super.tick();
 		elapsedTicks++;
 
-		if (elapsedTicks > speed)
+		if (elapsedTicks > speed) {
 			next();
+			elapsedTicks = 0;
+		}
 	}
 }

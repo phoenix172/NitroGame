@@ -2,9 +2,6 @@ package nitro.game.objects;
 
 import nitro.game.graphics.GraphicsWrapper;
 import nitro.game.graphics.StateMapper;
-import nitro.game.graphics.StaticBackground;
-import nitro.game.resources.ImageResource;
-import nitro.game.resources.Resource;
 import nitro.game.resources.ResourceDictionary;
 import nitro.game.visuals.Visual;
 
@@ -39,12 +36,12 @@ public abstract class GameObject implements Visual {
 	public void tick() {
 		stateMapper.tick();
 	}
-	
+
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
 		stateMapper.render(graphicsWrapper);
 	}
-	
+
 	@Override
 	public String key() {
 		return this.key;

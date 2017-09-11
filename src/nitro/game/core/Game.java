@@ -14,8 +14,6 @@ import nitro.game.visuals.Visual;
 
 public abstract class Game extends Canvas implements Runnable {
 
-	private static final long serialVersionUID = 1501150258850337479L;
-
 	private static final String GameVisuals = "GAME_VISUALS";
 	protected String title;
 	private CompositeVisual visuals;
@@ -86,6 +84,7 @@ public abstract class Game extends Canvas implements Runnable {
 	}
 
 	private void tick() {
+		visuals.tick();
 	}
 
 	private void render() {
@@ -101,11 +100,7 @@ public abstract class Game extends Canvas implements Runnable {
 
 		GraphicsWrapper graphicsWrapper = new GraphicsWrapper(g2);
 
-		// g2.setColor(Color.BLACK);
-		// g2.fillRect(0, 0, this.getWidth(), this.getHeight());
-
 		visuals.render(graphicsWrapper);
-		g2.drawString("Gosho", 10, 10);
 
 		g.dispose();
 		bs.show();
