@@ -13,17 +13,19 @@ import nitro.game.visuals.CompositeVisual;
 import nitro.game.visuals.Visual;
 
 public class GameCanvas extends Canvas {
-	
+
 	private boolean running = false;
 	private Thread thread;
 	private Game game;
+	private BufferStrategy bs;
+	private GraphicsWrapper graphicsWrapper;
 
 	Random rand = new Random();
 
 	public GameCanvas(Game game) {
 		this.game = game;
 	}
-	
+
 	public synchronized void start() {
 		if (running)
 			return;
@@ -35,8 +37,7 @@ public class GameCanvas extends Canvas {
 
 	protected void run() {
 		this.requestFocus();
-		
-		
+
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
 		double ns = 1000000000 / amountOfTicks;
@@ -44,7 +45,7 @@ public class GameCanvas extends Canvas {
 		long timer = System.currentTimeMillis();
 		int updates = 0;
 		int frames = 0;
-		
+
 		while (running) {
 			long now = System.nanoTime();
 			delta += (now - lastTime) / ns;
@@ -54,10 +55,10 @@ public class GameCanvas extends Canvas {
 				updates++;
 				delta--;
 			}
-			
-			GraphicsWrapper graphics = createGraphics();
-			game.render(graphics);
-			graphics.dispose();
+			initGraphics();
+			game.render(graphicsWrapper);
+			bs.show();
+			graphicsWrapper.dispose();
 			frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
@@ -68,9 +69,12 @@ public class GameCanvas extends Canvas {
 			}
 		}
 	}
-	
-	private GraphicsWrapper createGraphics() {
-		this.createBufferStrategy(3);
-		return new GraphicsWrapper((Graphics2D)this.getBufferStrategy().getDrawGraphics());
+
+	private void initGraphics() {
+		if (bs == null) {
+			this.createBufferStrategy(3);
+			bs = getBufferStrategy();
+		}
+		graphicsWrapper = new GraphicsWrapper((Graphics2D) bs.getDrawGraphics());
 	}
 }

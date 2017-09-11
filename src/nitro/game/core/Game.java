@@ -1,7 +1,5 @@
 package nitro.game.core;
 
-import java.awt.GraphicsConfiguration;
-
 import nitro.game.constants.Keys;
 
 public class Game extends VisualObject{
@@ -12,7 +10,7 @@ public class Game extends VisualObject{
 	public Game() {
 		setKey(Keys.Game);
 		this.levelManager = new LevelManager();
-		this.addChild(levelManager);
+		//this.addChild(levelManager.leve);
 	}
 	
 	protected LevelManager levelManager() {

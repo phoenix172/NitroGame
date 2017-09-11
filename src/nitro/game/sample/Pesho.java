@@ -1,22 +1,18 @@
 package nitro.game.sample;
 
-import java.awt.Dimension;
-
 import nitro.game.objects.GameObject;
-import nitro.game.resources.ResourceDictionary;
 import nitro.game.visuals.Animation;
 import nitro.game.visuals.Frame;
 
-public class Cube extends GameObject {
+public class Pesho extends GameObject {
 	Animation animation;
 
-	public Cube() {
+	public Pesho() {
 		super();
-		this.setSize(new Dimension(32, 32));
-		initStates();
 	}
 
-	private void initStates() {
+	@Override
+	protected void onLoaded() {
 		animation = new Animation(5, "DEFAULT", new Frame("frame1", resources().get("frame1")),
 				new Frame("frame3", resources().get("frame3")), new Frame("frame4", resources().get("frame4")),
 				new Frame("frame5", resources().get("frame5")), new Frame("frame6", resources().get("frame6")));
