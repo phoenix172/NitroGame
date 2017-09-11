@@ -28,7 +28,7 @@ public class StaticBackground implements Visual {
 
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
-		Graphics2D graphics = graphicsWrapper.create();
+		Graphics2D graphics = graphicsWrapper.get();
 		Rectangle screenBounds = graphicsWrapper.bounds();
 		graphics.drawImage(image.get(), 0, 0, (int) screenBounds.getWidth(), (int) screenBounds.getHeight(), null);
 	}

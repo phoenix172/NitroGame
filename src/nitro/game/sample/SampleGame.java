@@ -1,5 +1,7 @@
 package nitro.game.sample;
 
+import java.awt.Point;
+
 import nitro.game.core.Game;
 import nitro.game.core.Level;
 import nitro.game.graphics.StaticBackground;
@@ -27,25 +29,10 @@ public class SampleGame extends Game {
 
 		levels().add(level);
 		levels().setCurrentLevel(level);
-		// level.add(background);
+		level.add(background);
 
 		GameObject cube = new Cube(resources());
+		cube.setLocation(new Point(69,69));
 		level.add(cube);
-	}
-
-	public class Cube extends GameObject {
-		static final String resourceKey = "CUBE";
-		Animation animation;
-
-		public Cube(ResourceDictionary resources) {
-			super(resourceKey, resources);
-			initStates();
-		}
-
-		private void initStates() {
-			animation = new Animation(10, "DEFAULT", new Frame("frame1", resources.get("BACKGROUND")),
-					new Frame("frame2", resources.get("CUBE")));
-			this.stateMapper().addMapping("default", animation);
-		}
 	}
 }

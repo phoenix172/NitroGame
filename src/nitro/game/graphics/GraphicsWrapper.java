@@ -12,11 +12,23 @@ public class GraphicsWrapper {
 		this.graphics = graphics;
 	}
 
-	public Graphics2D create() {
-		return (Graphics2D)this.graphics.create();
+	public GraphicsWrapper create() {
+		return create(bounds());
+	}
+	
+	public GraphicsWrapper create(Rectangle bounds) {
+		return new GraphicsWrapper((Graphics2D)this.graphics
+				.create(bounds.x, bounds.y, bounds.width, bounds.height));
 	}
 	
 	public Rectangle bounds() {
-		return graphics.getDeviceConfiguration().getBounds();
+		Rectangle bounds = graphics.getClipBounds();
+		if(bounds == null)
+			return graphics.getDeviceConfiguration().getBounds();
+		return bounds;
+	}
+	
+	public Graphics2D get() {
+		return ((Graphics2D)graphics.create());
 	}
 }

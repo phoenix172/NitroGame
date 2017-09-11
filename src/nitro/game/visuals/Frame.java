@@ -26,6 +26,6 @@ public class Frame implements Visual {
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
 
-		graphicsWrapper.create().drawImage(resource.get(), 0, 0, 32, 32, null);
+		graphicsWrapper.get().drawImage(resource.get(), 0, 0, 32, 32, null);
 	}
 }
