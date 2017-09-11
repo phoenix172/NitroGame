@@ -20,6 +20,7 @@ public class SampleGame extends Game {
 	private void addResources() {
 		resources().add(new ImageResource("BACKGROUND", "/blue.jpg"));
 		resources().add(new ImageResource("CUBE", "/cube.png"));
+		resources().add(new ImageResource("SPRITE_SHEET", "/player_sheet.png"));
 	}
 
 	private void addLevels() {

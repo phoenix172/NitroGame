@@ -12,7 +12,7 @@ public class Game extends VisualObject{
 	public Game() {
 		setKey(Keys.Game);
 		this.levelManager = new LevelManager();
-		this.children().add(levelManager);
+		this.addChild(levelManager);
 	}
 	
 	protected LevelManager levelManager() {

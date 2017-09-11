@@ -20,7 +20,7 @@ public abstract class GameObject extends VisualObject {
 	public GameObject() {	
 		this.stateMachine = new StateMachine();
 		this.stateMapper = new StateMapper(SPRITE, stateMachine);
-		this.children().add(stateMapper);
+		this.addChild(stateMapper);
 	}
 
 	protected StateMachine stateMachine() {

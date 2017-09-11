@@ -3,38 +3,56 @@ package nitro.game.core;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.util.Collection;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import nitro.game.graphics.GraphicsWrapper;
 import nitro.game.resources.ResourceDictionary;
 import nitro.game.visuals.CompositeVisual;
 import nitro.game.visuals.Visual;
 
-public class VisualObject implements Visual {
+public class VisualObject implements Visual{
 	
-	private CompositeVisual children;
+	private CompositeVisual compositeVisual;
+	private VisualObject parent;
 	private ResourceDictionary resourceDictionary;
 	private Dimension size;
 	private Point location;
 	private String key;
 	
 	public VisualObject() {
+		this.location = new Point();
 		this.key = UUID.randomUUID().toString();
-		this.children = new CompositeVisual(key);
+		this.compositeVisual = new CompositeVisual(key);
 		this.resourceDictionary = new ResourceDictionary();
 	}
 	
-	protected CompositeVisual children() {
-		return children;
+	public Collection<VisualObject> children() {
+		return compositeVisual.visuals().stream()
+				.map(x->(VisualObject)x).collect(Collectors.toList());
+	}
+	
+	public void addChild(VisualObject child) {
+		child.resourceDictionary.setParent(resourceDictionary);
+		addChild((Visual)child);
+		child.onLoaded();
+	}
+	
+	public void addChild(Visual visual) {
+		compositeVisual.addVisual(visual);
+	}
+	
+	public void removeChild(Visual child) {
+		compositeVisual.removeVisual(child);
+	}
+	
+	public VisualObject getChild(String key) {
+		return (VisualObject)compositeVisual.getVisual(key);
 	}
 	
 	protected ResourceDictionary resources() {
 		return resourceDictionary;
-	}
-	
-	protected void addChild(VisualObject child) {
-		children().add(child);
-		child.resources().setParent(this.resources());
 	}
 	
 	public void setSize(Dimension size) {
@@ -47,6 +65,8 @@ public class VisualObject implements Visual {
 	public void setKey(String key){
 		this.key = key;
 	}
+	
+	protected void onLoaded() {}
 
 	@Override
 	public String key() {
@@ -55,13 +75,14 @@ public class VisualObject implements Visual {
 
 	@Override
 	public void tick() {
-		children.tick();
+		compositeVisual.tick();
 	}
 
 	@Override
 	public void render(GraphicsWrapper graphicsWrapper) {
 		graphicsWrapper.bounds().setLocation(location);
-		graphicsWrapper.bounds().setSize(size);
-		children.render(graphicsWrapper);
+		if(size!=null)
+			graphicsWrapper.bounds().setSize(size);
+		compositeVisual.render(graphicsWrapper);
 	}
 }

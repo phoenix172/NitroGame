@@ -31,4 +31,8 @@ public class GraphicsWrapper {
 	public Graphics2D get() {
 		return ((Graphics2D)graphics.create());
 	}
+	
+	public void dispose() {
+		graphics.dispose();
+	}
 }

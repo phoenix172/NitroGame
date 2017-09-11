@@ -24,19 +24,18 @@ public class GameCanvas extends Canvas {
 		this.game = game;
 	}
 	
-	public synchronized void start(Game game) {
+	public synchronized void start() {
 		if (running)
 			return;
 
 		running = true;
-		thread = new Thread(()->draw());
+		thread = new Thread(this::run);
 		thread.start();
 	}
 
-	protected void draw() {
+	protected void run() {
 		this.requestFocus();
 		
-		GraphicsWrapper graphics = createGraphics();
 		
 		long lastTime = System.nanoTime();
 		double amountOfTicks = 60.0;
@@ -55,7 +54,10 @@ public class GameCanvas extends Canvas {
 				updates++;
 				delta--;
 			}
+			
+			GraphicsWrapper graphics = createGraphics();
 			game.render(graphics);
+			graphics.dispose();
 			frames++;
 
 			if (System.currentTimeMillis() - timer > 1000) {
@@ -69,7 +71,6 @@ public class GameCanvas extends Canvas {
 	
 	private GraphicsWrapper createGraphics() {
 		this.createBufferStrategy(3);
-		Graphics g = this.getBufferStrategy().getDrawGraphics();
-		return new GraphicsWrapper((Graphics2D)g);
+		return new GraphicsWrapper((Graphics2D)this.getBufferStrategy().getDrawGraphics());
 	}
 }

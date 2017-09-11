@@ -7,14 +7,12 @@ public class CustomLevel extends Level{
 
 	public CustomLevel(String key) {
 		super(key);
-		
-		addChildren();
 	}
 
-	private void addChildren() {
+	@Override
+	protected void onLoaded() {
 		StaticBackground background = new StaticBackground(resources().get("BACKGROUND"));
-		children().add(background);
+		addChild(background);
 		children().add(new Cube());
 	}
-	
 }
