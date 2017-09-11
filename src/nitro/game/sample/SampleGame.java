@@ -13,12 +13,12 @@ import nitro.game.visuals.Frame;
 
 public class SampleGame extends Game {
 	public SampleGame() {
-		this.title = "Sample Game";
-		addReasources();
+		setTitle("Sample Game");
+		addResources();
 		addLevels();
 	}
 
-	private void addReasources() {
+	private void addResources() {
 		resources().add(new ImageResource("BACKGROUND", "/blue.jpg"));
 		resources().add(new ImageResource("CUBE", "/cube.png"));
 	}
@@ -26,13 +26,10 @@ public class SampleGame extends Game {
 	private void addLevels() {
 		Level level = new CustomLevel("pesho");
 		StaticBackground background = new StaticBackground(resources().get("BACKGROUND"));
+		levelManager().addLevel(level);
+		levelManager().setCurrentLevel(level);
 
-		levels().add(level);
-		levels().setCurrentLevel(level);
-		level.add(background);
-
-		GameObject cube = new Cube(resources());
+		GameObject cube = new Cube();
 		cube.setLocation(new Point(69,69));
-		level.add(cube);
 	}
 }

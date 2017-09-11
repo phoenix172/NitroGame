@@ -16,7 +16,7 @@ public class LevelManager implements Visual {
 		levels = new SelectionVisual(LEVEL_MANAGER_KEY);
 	}
 
-	public void add(Level level) {
+	public void addLevel(Level level) {
 		levels.add(level);
 	}
 

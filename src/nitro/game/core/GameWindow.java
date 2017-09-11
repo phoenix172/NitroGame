@@ -4,25 +4,17 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-public class GameWindow {
+public class GameWindow extends JFrame{
 
-	private Game game;
-	public GameWindow(int width, int height, Game game) {
-		this.game = game;
-		game.setPreferredSize(new Dimension(width, height));
-		game.setMinimumSize(new Dimension(width, height));
-		game.setMaximumSize(new Dimension(width, height));
-
-		JFrame frame = new JFrame(game.title);
-		frame.add(game);
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+	public GameWindow(int width, int height) {
+		setSize(width, height);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 	}
 
-	public void run() {
-		game.start();
+	public void show(Game game) {
+		GameCanvas canvas = new GameCanvas(game);
+		pack();
+		add(canvas);
 	}
 }
