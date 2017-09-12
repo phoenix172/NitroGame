@@ -1,6 +1,10 @@
 package nitro.game.core;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import nitro.game.constants.Keys;
+import nitro.game.graphics.GraphicsWrapper;
 
 public class Game extends VisualObject{
 
@@ -24,5 +28,13 @@ public class Game extends VisualObject{
 	
 	public String getTitle() {
 		return this.title;
+	}
+	
+	@Override
+	public void render(GraphicsWrapper graphicsWrapper) {
+		Graphics2D graphics = graphicsWrapper.get();
+		graphics.setColor(Color.WHITE);
+		graphics.fill(graphicsWrapper.bounds());
+		super.render(graphicsWrapper);
 	}
 }
