@@ -65,6 +65,7 @@ public class GameCanvas extends Canvas {
 
 	private void render() {
 		initGraphics();
+		
 		game.render(graphicsWrapper);
 		bs.show();
 		graphicsWrapper.dispose();

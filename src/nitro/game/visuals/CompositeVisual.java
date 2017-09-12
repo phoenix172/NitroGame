@@ -37,8 +37,9 @@ public class CompositeVisual implements Visual {
 
 	@Override
 	public void render(GraphicsWrapper graphics) {
-		this.visuals.values().stream().sorted((a, b) -> ((Integer) a.zIndex()).compareTo(b.zIndex()))
-				.forEach(v -> v.render(graphics));
+		this.visuals.values().stream()
+			.sorted((a, b) -> ((Integer) a.zIndex()).compareTo(b.zIndex()))
+			.forEach(v -> v.render(graphics));
 	}
 
 	@Override

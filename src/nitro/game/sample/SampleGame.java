@@ -1,5 +1,6 @@
 package nitro.game.sample;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
@@ -9,10 +10,24 @@ import nitro.game.graphics.SpriteSheet;
 import nitro.game.resources.ImageResource;
 
 public class SampleGame extends Game {
+	
 	public SampleGame() {
 		setTitle("Sample Game");
+	}
+
+	@Override
+	protected void onLoaded() {
 		addResources();
 		addLevels();
+		addPlayer();
+	}
+
+	private void addPlayer() {
+		Pesho pesho = new Pesho();
+		pesho.setLocation(new Point(0, 0));
+		pesho.velocityX = 10;
+		this.addChild(pesho);		
+		this.camera().follow(this.getSize().width, this.getSize().height, pesho);
 	}
 
 	private void addResources() {

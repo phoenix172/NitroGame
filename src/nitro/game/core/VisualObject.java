@@ -15,8 +15,10 @@ public class VisualObject implements Visual {
 
 	private CompositeVisual compositeVisual;
 	private ResourceDictionary resourceDictionary;
+	private VisualObject parent;
 	private Dimension size;
 	private Point location;
+	public double velocityX;
 	private String key;
 
 	public VisualObject() {
@@ -30,9 +32,14 @@ public class VisualObject implements Visual {
 	}
 
 	public void addChild(VisualObject child) {
-		child.resourceDictionary.setParent(resourceDictionary);
+		child.setParent(this);
 		addChild((Visual) child);
 		child.onLoaded();
+	}
+	
+	private void setParent(VisualObject parent) {
+		this.parent = parent;
+		this.resourceDictionary.setParent(parent.resourceDictionary);		
 	}
 
 	public void addChild(Visual visual) {
@@ -59,12 +66,25 @@ public class VisualObject implements Visual {
 		this.size = size;
 	}
 	
-	public Point getLocation() {
-		return this.location;
+	public boolean hasParent() {
+		return this.parent != null;
 	}
 	
+	public Point getLocation() {
+		if(this.location!=null)
+			return this.location;
+		if(this.hasParent())
+			return this.parent.location;
+		return null;
+	}
+	
+	
 	public Dimension getSize() {
-		return this.size;
+		if(this.size != null)
+			return this.size;
+		if(this.hasParent())
+			return this.parent.size;
+		return null;
 	}
 
 	public void setKey(String key) {
@@ -81,6 +101,9 @@ public class VisualObject implements Visual {
 
 	@Override
 	public void tick() {
+		Point location = this.getLocation();
+		location.x += velocityX;
+		this.setLocation(location);
 		compositeVisual.tick();
 	}
 

@@ -15,9 +15,8 @@ public class CustomLevel extends Level {
 	protected void onLoaded() {
 		StaticBackground background = new StaticBackground(resources().get("BACKGROUND"));
 		//addChild(background);
-		Pesho pesho = new Pesho();
-		pesho.setLocation(new Point(0, 0));
-//		pesho.setSize(new Dimension(128, 128));
-		addChild(pesho);
+//		Pesho pesho = new Pesho();
+//		pesho.setLocation(new Point(0, 0));
+//		addChild(pesho);
 	}
 }
