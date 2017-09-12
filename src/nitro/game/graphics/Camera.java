@@ -1,8 +1,6 @@
 package nitro.game.graphics;
 
-import nitro.game.core.Game;
 import nitro.game.core.VisualObject;
-import nitro.game.objects.GameObject;
 
 public class Camera {
 	private float x, y;
@@ -13,7 +11,7 @@ public class Camera {
 	}
 
 	public void tick(VisualObject object) {
-		x = -object + Game.WIDTH / 2;
+		// x = -object + Game.WIDTH / 2;
 	}
 
 	public float getX() {

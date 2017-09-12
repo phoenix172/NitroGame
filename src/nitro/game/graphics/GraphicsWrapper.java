@@ -27,8 +27,7 @@ public class GraphicsWrapper {
 	}
 
 	public GraphicsWrapper create(Point location, Dimension size) {
-		return new GraphicsWrapper((Graphics2D) 
-				this.graphics.create(location.x, location.y, size.width, size.height));
+		return new GraphicsWrapper((Graphics2D) this.graphics.create(location.x, location.y, size.width, size.height));
 	}
 
 	public void setBounds(Point location, Dimension size) {

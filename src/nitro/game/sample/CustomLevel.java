@@ -1,6 +1,5 @@
 package nitro.game.sample;
 
-import java.awt.Dimension;
 import java.awt.Point;
 
 import nitro.game.core.Level;
@@ -15,7 +14,7 @@ public class CustomLevel extends Level {
 	@Override
 	protected void onLoaded() {
 		StaticBackground background = new StaticBackground(resources().get("BACKGROUND"));
-		addChild(background);
+		//addChild(background);
 		Pesho pesho = new Pesho();
 		pesho.setLocation(new Point(0, 0));
 //		pesho.setSize(new Dimension(128, 128));
